@@ -1,50 +1,56 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
+export interface IAddress {
+	country: string;
+	town: string;
+	addressString: string;
+}
+
 export interface IStudent extends Document {
 	name: string;
 	surname: string;
 	groupId: string; // todo
 	birthDate: Date;
 	phoneNumbers: string[]
-	// address: string
-
-	createdAt: Date;
-	updatedAt: Date;
+	address: IAddress
 }
 
+const addressSchema = new Schema({
+	country: String,
+	town: String,
+	addressString: String,
+});
+
 const studentSchema = new Schema({
-	/**
-	 * The status of the category
-	 * @type {Enum}
-	 */
-	status: {
-		// default: ACTIVE,
-		// enum: [ACTIVE, DELETED],
-		type: String,
-	},
-	/**
-	 * The name of the category
-	 * @type {String}
-	 */
 	name: {
 		required: true,
 		type: String
 	},
-	/**
-	 * The Id of the account the category belongs to
-	 * @type {Number}
-	 */
-	accountId: {
-		required: true,
-		type: Number
-	},
-	/**
-	 * The language of the category
-	 * @type {String}
-	 */
-	language: {
+
+	surname: {
 		required: true,
 		type: String
+	},
+
+	groupId: {
+		required: true,
+		type: String,
+		ref: 'Group'
+	},
+
+	birthDate: {
+		required: true,
+		type: Date
+	},
+
+	phoneNumbers: {
+		required: false,
+		type: Array
+	},
+
+	address: {
+		required: false,
+		type: addressSchema
 	},
 });
 
