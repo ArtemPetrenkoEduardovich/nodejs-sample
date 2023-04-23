@@ -26,6 +26,7 @@ export default async () => {
 	// to disable caching of requests returning 304 instead of 200
 	app.disable('etag');
 
+	app.use(express.json());
 	app.use('/', controllers);
 
 	const port = await getConsulValue('port');
