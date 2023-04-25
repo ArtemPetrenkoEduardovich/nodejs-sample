@@ -1,15 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "module": "commonjs",
-    "target": "es6",
-//    "paths": {
-//      "src/*": ["src/*"]
-//    },
+    "paths": {
+      "src/*": ["src/*"]
+    }
   },
   "exclude": [
     "node_modules",
-    "lib",
+    "dist",
     "**/*.test.ts"
   ],
   "extends": "./tsconfig.json",

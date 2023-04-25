@@ -47,6 +47,9 @@ npm install eslint typescript --save-dev
 npm install @typescript-eslint/eslint-plugin @typescript-eslint/parser --save-dev
 
 
+npm i -D tsc-alias
+
+
 
 
 

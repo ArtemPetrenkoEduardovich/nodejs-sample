@@ -1,13 +1,13 @@
 import { OK } from 'http-status';
+import { Request, Response } from 'express';
 
 /**
  * Ping endpoint used to check if the service can be reached.
  *
- * @param  {Object} req The request
+ * @param _ The request
  * @param  {Object} res The response
- * @return {Void}     void
  */
-async function ping(req, res) {
+async function ping(_: Request, res: Response) {
 	res.status(OK).send('PONG');
 }
 

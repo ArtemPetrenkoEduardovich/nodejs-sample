@@ -13,7 +13,7 @@ type ConsulResult = {
 	Value: any,
 };
 
-const getConsulValue = async (key) => {
+const getConsulValue = async (key: string) => {
 	const result: ConsulResult = await consulServer.kv.get(`${prefix}/${key}`);
 	return result?.Value;
 }
