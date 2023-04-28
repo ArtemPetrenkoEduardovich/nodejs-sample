@@ -9,7 +9,7 @@ export interface IAddress {
 export interface IStudent extends Document {
 	name: string;
 	surname: string;
-	groupId: string; // todo
+	groupId: string;
 	birthDate: Date;
 	phoneNumbers: string[]
 	address: IAddress

@@ -27,6 +27,22 @@ export default async () => {
 	app.disable('etag');
 
 	app.use(express.json());
+
+	app.use((req, _, next) => {
+		const dateReviver = (_: string, value: any) => {
+			if (value && typeof value === 'string') {
+				const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+				if (dateRegex.test(value)) {
+					return new Date(value);
+				}
+			}
+			return value;
+		};
+
+		req.body = JSON.parse(JSON.stringify(req.body), dateReviver);
+		next();
+	});
+
 	app.use('/', controllers);
 
 	const port = await getConsulValue('port');
