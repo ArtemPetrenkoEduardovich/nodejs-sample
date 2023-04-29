@@ -6,11 +6,11 @@ import { createStudent as createStudentApi } from 'src/services/student'
 const saveStudent = async (req: Request, res: Response) => {
 	try {
 		const student = req.body;
-		const result = await createStudentApi({
+		const id = await createStudentApi({
 			...student
 		});
 		res.status(httpStatus.CREATED).send({
-			result,
+			id,
 		});
 	} catch (err) {
 		log4js.getLogger().error('Error in creating student.', err);

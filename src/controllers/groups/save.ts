@@ -9,12 +9,12 @@ const saveGroup = async (req: Request, res: Response) => {
 			name,
 			startYear,
 		} = req.body;
-		const result = await saveGroupApi({
+		const id = await saveGroupApi({
 			name,
 			startYear,
 		});
 		res.status(httpStatus.CREATED).send({
-			result,
+			id,
 		});
 	} catch (err) {
 		log4js.getLogger().error('Error in creating group.', err);

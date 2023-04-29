@@ -1,9 +1,9 @@
 import express from 'express';
 import controllers from './controllers';
 import config from './config';
-import log4js, {Configuration} from 'log4js';
-import mongoose, {ConnectOptions} from "mongoose";
-import Consul, {ConsulOptions} from 'consul';
+import log4js, { Configuration } from 'log4js';
+import mongoose, { ConnectOptions } from 'mongoose';
+import Consul, { ConsulOptions } from 'consul';
 
 const consulServer = new Consul(config.consul.server as ConsulOptions);
 

@@ -51,8 +51,17 @@ const studentSchema = new Schema({
 	address: {
 		required: false,
 		type: addressSchema
-	},
-});
+	}
+},
+{
+	/**
+	 * The timestamps option tells mongoose to assign createdAt and updatedAt
+	 * fields to your schema. The type assigned is Date.
+	 */
+	timestamps: true,
+	timezone: 'UTC',
+},
+);
 
 const Student = mongoose.model<IStudent>('Student', studentSchema);
 

@@ -6,12 +6,13 @@ export const listGroups = (): Promise<GroupDto[]> => {
 	return Group.find({});
 }
 
-export const saveGroup = ({
+export const saveGroup = async ({
 	name,
 	startYear,
-}: GroupSaveDto) => {
-	return new Group({
+}: GroupSaveDto): Promise<string> => {
+	const group = await new Group({
 		name,
 		startYear,
 	}).save();
+	return group._id;
 }
