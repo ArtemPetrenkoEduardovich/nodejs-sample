@@ -18,13 +18,15 @@
     "removeComments": false,
     "resolveJsonModule": true,
     "useUnknownInCatchVariables": false,
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "skipLibCheck": true,
     "strict": true
   },
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "src/test"
   ],
   "include": [
     "src/**/*.ts"

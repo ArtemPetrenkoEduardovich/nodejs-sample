@@ -32,16 +32,6 @@ tsconfig.build.json
 
 
 
-
-"scripts": {
-    "start": "tsc && node dist/config.ts",
-    "test": "tsc && mocha dist/**/*.test.js",
-    "build": "tsc --project tsconfig.build.json"
-  }
-
-
-
-
 npm install eslint typescript --save-dev
 
 npm install @typescript-eslint/eslint-plugin @typescript-eslint/parser --save-dev
@@ -49,7 +39,7 @@ npm install @typescript-eslint/eslint-plugin @typescript-eslint/parser --save-de
 
 npm i -D tsc-alias
 
-
+npm i -D mongodb-memory-server
 
 
 

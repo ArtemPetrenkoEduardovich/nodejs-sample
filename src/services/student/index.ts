@@ -71,7 +71,7 @@ const toInfoDto = (students: IStudent[]): StudentInfoDto[] => {
 	}));
 };
 
-const validateStudent = async (studentDto: StudentSaveDto) => {
+export const validateStudent = async (studentDto: StudentSaveDto) => {
 	const id = studentDto.groupId;
 	if (!mongoose.Types.ObjectId.isValid(id)) {
 		throw new Error(`Group with id ${id} doesn't exist`);

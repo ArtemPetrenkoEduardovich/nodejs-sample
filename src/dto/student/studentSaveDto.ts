@@ -5,6 +5,6 @@ export interface StudentSaveDto {
 	surname: string;
 	groupId: string;
 	birthDate: Date;
-	phoneNumbers: string[]
-	address: Address
+	phoneNumbers?: string[]
+	address?: Address
 }

@@ -54,6 +54,7 @@ export default async () => {
 	const mongoAddress = await getConsulValue('mongo.address');
 	await mongoose.connect(mongoAddress, {
 		useNewUrlParser: true,
+		useUnifiedTopology: true,
 		socketTimeoutMS: 30000,
 	} as ConnectOptions);
 
