@@ -6,6 +6,7 @@ import Student from 'src/model/student';
 import Group from 'src/model/group';
 import { StudentSaveDto } from 'src/dto/student/studentSaveDto';
 import * as studentService from 'src/services/student';
+import { StudentQueryDto } from 'src/dto/student/studentQueryDto';
 
 const { expect } = chai;
 
@@ -51,6 +52,14 @@ const student2OfGroup2 = new Student({
   birthDate: new Date('1993-05-08'),
 });
 
+const studentForSearch = new Student({
+  _id: new ObjectId().toString(),
+  name: "Test Name 1",
+  surname: "Test Surname 1",
+  groupId: new ObjectId().toString(),
+  birthDate: new Date('1991-01-01'),
+});
+
 describe('Student Service', () => {
   before(async () => {
     /**
@@ -64,6 +73,7 @@ describe('Student Service', () => {
     await student1.save();
     await student1OfGroup2.save();
     await student2OfGroup2.save();
+    await studentForSearch.save();
   });
 
   afterEach(() => {
@@ -139,6 +149,45 @@ describe('Student Service', () => {
         expect(students.length).to.equal(2);
         expect(students.map(std => std._id.toString())).to
           .eql(savedStudents.map(std => std._id.toString()));
+        done();
+      })
+      .catch(error => done(error));
+  });
+
+  it('search should find a student by name', (done) => {
+    const query = new StudentQueryDto({
+      name: studentForSearch.name,
+    });
+    studentService.search(query)
+      .then((students) => {
+        expect(students.length).to.equal(1);
+        expect(students[0]._id).to.eql(studentForSearch._id)
+        done();
+      })
+      .catch(error => done(error));
+  });
+
+  it('search should find a student by surname', (done) => {
+    const query = new StudentQueryDto({
+      surname: studentForSearch.surname,
+    });
+    studentService.search(query)
+      .then((students) => {
+        expect(students.length).to.equal(1);
+        expect(students[0]._id).to.eql(studentForSearch._id)
+        done();
+      })
+      .catch(error => done(error));
+  });
+
+  it('search should find a student by groupId', (done) => {
+    const query = new StudentQueryDto({
+      groupId: studentForSearch.groupId,
+    });
+    studentService.search(query)
+      .then((students) => {
+        expect(students.length).to.equal(1);
+        expect(students[0]._id).to.eql(studentForSearch._id)
         done();
       })
       .catch(error => done(error));
