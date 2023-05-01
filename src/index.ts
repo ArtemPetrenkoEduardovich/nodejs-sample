@@ -1,5 +1,5 @@
-import app from "./app";
+import app from './app';
 
 (async () => {
-	await app();
+  await app();
 })();

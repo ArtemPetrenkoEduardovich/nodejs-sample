@@ -7,85 +7,85 @@ import Student, { IStudent } from 'src/model/student';
 import Group from 'src/model/group';
 
 export const createStudent = async (
-	studentDto: StudentSaveDto
+  studentDto: StudentSaveDto
 ): Promise<string> => {
-	await validateStudent(studentDto);
-	const student = await new Student(studentDto).save();
-	return student._id;
+  await validateStudent(studentDto);
+  const student = await new Student(studentDto).save();
+  return student._id;
 };
 
 export const getStudent = (id: string): Promise<StudentDetailsDto | null> => {
-	return Student.findById(id);
+  return Student.findById(id);
 };
 
 export const updateStudent = async (
-	id: string,
-	studentDto: StudentSaveDto,
+  id: string,
+  studentDto: StudentSaveDto,
 ) => {
-	await validateStudent(studentDto);
-	await Student.findOneAndUpdate(
-		{
-			_id: id,
-		},
-		{
-			...studentDto,
-		}
-	);
+  await validateStudent(studentDto);
+  await Student.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    {
+      ...studentDto,
+    }
+  );
 };
 
 export const listStudentsByGroupId = async (
-	groupId: string
+  groupId: string
 ): Promise<StudentInfoDto[]> => {
-	const students = await Student.find({
-		groupId,
-	});
+  const students = await Student.find({
+    groupId,
+  });
 
-	return toInfoDto(students);
+  return toInfoDto(students);
 };
 
 export const search = async (
-	query: StudentQueryDto
+  query: StudentQueryDto
 ): Promise<StudentInfoDto[]> => {
-	const {
-		name,
-		surname,
-		groupId,
-	} = query;
-	const students = await Student
-		.find({
-			...(name && { name }),
-			...(surname && { surname }),
-			...(groupId && { groupId }),
-		})
-		.skip(query.skip)
-		.limit(query.limit);
+  const {
+    name,
+    surname,
+    groupId,
+  } = query;
+  const students = await Student
+    .find({
+      ...(name && { name }),
+      ...(surname && { surname }),
+      ...(groupId && { groupId }),
+    })
+    .skip(query.skip)
+    .limit(query.limit);
 
-	return toInfoDto(students);
+  return toInfoDto(students);
 };
 
 const toInfoDto = (students: IStudent[]): StudentInfoDto[] => {
-	return students.map(student => ({
-		_id: student._id,
-		fullName: `${student.name} ${student.surname}`,
-		groupId: student.groupId,
-	}));
+  return students.map(student => ({
+    _id: student._id,
+    fullName: `${student.name} ${student.surname}`,
+    groupId: student.groupId,
+  }));
 };
 
 export const validateStudent = async (studentDto: StudentSaveDto) => {
-	const id = studentDto.groupId;
-	if (!mongoose.Types.ObjectId.isValid(id)) {
-		throw new Error(`Group with id ${id} doesn't exist`);
-	}
-	const isGroupExists = await Group.exists({
-		_id: id,
-	});
-	if (!isGroupExists) {
-		throw new Error(`Group with id ${id} doesn't exist`);
-	}
-	if (!!studentDto.birthDate
+  const id = studentDto.groupId;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new Error(`Group with id ${id} doesn't exist`);
+  }
+  const isGroupExists = await Group.exists({
+    _id: id,
+  });
+  if (!isGroupExists) {
+    throw new Error(`Group with id ${id} doesn't exist`);
+  }
+  if (!!studentDto.birthDate
 		&& studentDto.birthDate.getTime() >= new Date().getTime()) {
-		throw new Error("birthDate should be before this moment");
-	}
+    throw new Error("birthDate should be before this moment");
+  }
 };
 
 

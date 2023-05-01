@@ -6,15 +6,15 @@ export interface IGroup extends Document {
 }
 
 const groupSchema = new Schema({
-	name: {
-		required: true,
-		type: String,
-	},
+  name: {
+    required: true,
+    type: String,
+  },
 
-	startYear: {
-		required: true,
-		type: Number,
-	},
+  startYear: {
+    required: true,
+    type: Number,
+  },
 });
 
 const Group = mongoose.model<IGroup>('Group', groupSchema);

@@ -8,7 +8,7 @@ import { Request, Response } from 'express';
  * @param  {Object} res The response
  */
 async function ping(_: Request, res: Response) {
-	res.status(OK).send('PONG');
+  res.status(OK).send('PONG');
 }
 
 export default ping;

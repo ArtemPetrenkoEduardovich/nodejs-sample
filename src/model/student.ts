@@ -16,50 +16,50 @@ export interface IStudent extends Document {
 }
 
 const addressSchema = new Schema({
-	country: String,
-	town: String,
-	addressString: String,
+  country: String,
+  town: String,
+  addressString: String,
 });
 
 const studentSchema = new Schema({
-	name: {
-		required: true,
-		type: String,
-	},
+  name: {
+    required: true,
+    type: String,
+  },
 
-	surname: {
-		required: true,
-		type: String,
-	},
+  surname: {
+    required: true,
+    type: String,
+  },
 
-	groupId: {
-		required: true,
-		type: String,
-		ref: 'Group',
-	},
+  groupId: {
+    required: true,
+    type: String,
+    ref: 'Group',
+  },
 
-	birthDate: {
-		required: true,
-		type: Date,
-	},
+  birthDate: {
+    required: true,
+    type: Date,
+  },
 
-	phoneNumbers: {
-		required: false,
-		type: Array,
-	},
+  phoneNumbers: {
+    required: false,
+    type: Array,
+  },
 
-	address: {
-		required: false,
-		type: addressSchema,
-	},
+  address: {
+    required: false,
+    type: addressSchema,
+  },
 },
 {
-	/**
+  /**
 	 * The timestamps option tells mongoose to assign createdAt and updatedAt
 	 * fields to your schema. The type assigned is Date.
 	 */
-	timestamps: true,
-	timezone: 'UTC',
+  timestamps: true,
+  timezone: 'UTC',
 },
 );
 
