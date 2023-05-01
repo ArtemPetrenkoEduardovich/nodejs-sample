@@ -1,7 +1,7 @@
 import log4js from 'log4js';
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
-import { updateStudent as updateStudentApi } from 'src/services/student'
+import { updateStudent as updateStudentApi } from 'src/services/student';
 
 const updateStudent = async (req: Request, res: Response) => {
 	const student = req.body;
@@ -15,6 +15,6 @@ const updateStudent = async (req: Request, res: Response) => {
 			message: err.statusText || err.message,
 		});
 	}
-}
+};
 
 export default updateStudent;

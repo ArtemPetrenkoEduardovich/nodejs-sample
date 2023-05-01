@@ -1,7 +1,7 @@
 import log4js from 'log4js';
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
-import { listGroups as listGroupsApi } from 'src/services/group'
+import { listGroups as listGroupsApi } from 'src/services/group';
 
 const listGroups = async (_: Request, res: Response) => {
 	try {
@@ -13,6 +13,6 @@ const listGroups = async (_: Request, res: Response) => {
 			message: err.statusText || err.message,
 		});
 	}
-}
+};
 
 export default listGroups;

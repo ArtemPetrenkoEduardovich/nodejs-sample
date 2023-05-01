@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 import { Request, Response } from 'express';
 import {
 	listStudentsByGroupId as listStudentsByGroupIdApi,
-} from 'src/services/student'
+} from 'src/services/student';
 
 const listStudentsByGroupId = async (req: Request, res: Response) => {
 	const groupId = req.params.groupId;
@@ -18,6 +18,6 @@ const listStudentsByGroupId = async (req: Request, res: Response) => {
 			message: err.statusText || err.message,
 		});
 	}
-}
+};
 
 export default listStudentsByGroupId;

@@ -8,12 +8,12 @@ export interface IGroup extends Document {
 const groupSchema = new Schema({
 	name: {
 		required: true,
-		type: String
+		type: String,
 	},
 
 	startYear: {
 		required: true,
-		type: Number
+		type: Number,
 	},
 });
 

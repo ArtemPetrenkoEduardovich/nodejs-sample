@@ -12,11 +12,11 @@ export const createStudent = async (
 	await validateStudent(studentDto);
 	const student = await new Student(studentDto).save();
 	return student._id;
-}
+};
 
 export const getStudent = (id: string): Promise<StudentDetailsDto | null> => {
 	return Student.findById(id);
-}
+};
 
 export const updateStudent = async (
 	id: string,
@@ -31,7 +31,7 @@ export const updateStudent = async (
 			...studentDto,
 		}
 	);
-}
+};
 
 export const listStudentsByGroupId = async (
 	groupId: string
@@ -41,7 +41,7 @@ export const listStudentsByGroupId = async (
 	});
 
 	return toInfoDto(students);
-}
+};
 
 export const search = async (
 	query: StudentQueryDto
@@ -61,7 +61,7 @@ export const search = async (
 		.limit(query.limit);
 
 	return toInfoDto(students);
-}
+};
 
 const toInfoDto = (students: IStudent[]): StudentInfoDto[] => {
 	return students.map(student => ({
@@ -86,6 +86,6 @@ export const validateStudent = async (studentDto: StudentSaveDto) => {
 		&& studentDto.birthDate.getTime() >= new Date().getTime()) {
 		throw new Error("birthDate should be before this moment");
 	}
-}
+};
 
 

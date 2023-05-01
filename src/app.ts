@@ -16,10 +16,10 @@ type ConsulResult = {
 const getConsulValue = async (key: string) => {
 	const result: ConsulResult = await consulServer.kv.get(`${prefix}/${key}`);
 	return result?.Value;
-}
+};
 
 export default async () => {
-	let app = express();
+	const app = express();
 
 	log4js.configure(config.log4js as Configuration);
 

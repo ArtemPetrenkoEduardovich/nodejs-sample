@@ -1,7 +1,7 @@
 import log4js from 'log4js';
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
-import { search as searchApi } from 'src/services/student'
+import { search as searchApi } from 'src/services/student';
 import { StudentQueryDto } from 'src/dto/student/studentQueryDto';
 
 const search = async (req: Request, res: Response) => {
@@ -17,6 +17,6 @@ const search = async (req: Request, res: Response) => {
 			message: err.statusText || err.message,
 		});
 	}
-}
+};
 
 export default search;

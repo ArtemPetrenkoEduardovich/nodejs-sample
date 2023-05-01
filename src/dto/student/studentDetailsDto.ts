@@ -1,4 +1,4 @@
-import { Address } from 'src/dto/address/address'
+import { Address } from 'src/dto/address/address';
 
 export interface StudentDetailsDto {
 	name: string;

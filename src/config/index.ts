@@ -14,14 +14,14 @@ const config = {
       address: 'localhost',
       check: {
         http: 'http://localhost:8888/health',
-        interval: '5s'
-      }
-    }
+        interval: '5s',
+      },
+    },
   },
   log4js: {
     appenders: {
       console: {
-        type: 'console'
+        type: 'console',
       },
       ms: {
         type: 'dateFile',
@@ -29,15 +29,15 @@ const config = {
         alwaysIncludePattern: true,
         filename: 'log/ms',
         maxLogSize: 1000000,
-        compress: true
-      }
+        compress: true,
+      },
     },
     categories: {
       default: {
         appenders: ['ms', 'console'],
-        level: 'debug'
-      }
-    }
+        level: 'debug',
+      },
+    },
   },
 };
 

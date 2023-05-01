@@ -4,7 +4,7 @@ import { GroupDto } from 'src/dto/group/groupDto';
 
 export const listGroups = (): Promise<GroupDto[]> => {
 	return Group.find({});
-}
+};
 
 export const saveGroup = async ({
 	name,
@@ -15,4 +15,4 @@ export const saveGroup = async ({
 		startYear,
 	}).save();
 	return group._id;
-}
+};

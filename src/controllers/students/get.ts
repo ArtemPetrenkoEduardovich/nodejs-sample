@@ -1,7 +1,7 @@
 import log4js from 'log4js';
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
-import { getStudent as getStudentApi } from 'src/services/student'
+import { getStudent as getStudentApi } from 'src/services/student';
 
 const getStudent = async (req: Request, res: Response) => {
 	const id = req.params.id;
@@ -20,6 +20,6 @@ const getStudent = async (req: Request, res: Response) => {
 			message: err.statusText || err.message,
 		});
 	}
-}
+};
 
 export default getStudent;

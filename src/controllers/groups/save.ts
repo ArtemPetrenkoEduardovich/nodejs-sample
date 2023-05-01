@@ -1,7 +1,7 @@
 import log4js from 'log4js';
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
-import { saveGroup as saveGroupApi } from 'src/services/group'
+import { saveGroup as saveGroupApi } from 'src/services/group';
 
 const saveGroup = async (req: Request, res: Response) => {
 	try {
@@ -22,6 +22,6 @@ const saveGroup = async (req: Request, res: Response) => {
 			message: err.statusText || err.message,
 		});
 	}
-}
+};
 
 export default saveGroup;

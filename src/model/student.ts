@@ -24,34 +24,34 @@ const addressSchema = new Schema({
 const studentSchema = new Schema({
 	name: {
 		required: true,
-		type: String
+		type: String,
 	},
 
 	surname: {
 		required: true,
-		type: String
+		type: String,
 	},
 
 	groupId: {
 		required: true,
 		type: String,
-		ref: 'Group'
+		ref: 'Group',
 	},
 
 	birthDate: {
 		required: true,
-		type: Date
+		type: Date,
 	},
 
 	phoneNumbers: {
 		required: false,
-		type: Array
+		type: Array,
 	},
 
 	address: {
 		required: false,
-		type: addressSchema
-	}
+		type: addressSchema,
+	},
 },
 {
 	/**

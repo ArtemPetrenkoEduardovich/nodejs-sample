@@ -1,4 +1,4 @@
 export class QueryDto {
-	skip: number = 0;
-	limit: number = 10;
+	skip = 0;
+	limit = 10;
 }
