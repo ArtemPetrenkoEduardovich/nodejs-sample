@@ -7,10 +7,7 @@ import Group from 'src/model/group';
 import { StudentSaveDto } from 'src/dto/student/studentSaveDto';
 import * as studentService from 'src/services/student';
 
-// @ts-ignore
-const { assert, expect } = chai;
-// @ts-ignore
-const should = chai.should();
+const { expect } = chai;
 
 const sandbox = sinon.createSandbox();
 
@@ -34,7 +31,27 @@ const student1 = new Student({
   },
 });
 
-describe('Application Service', () => {
+const group2 = new Group({
+  _id: new ObjectId(),
+  name: "Group 2",
+  startYear: 2,
+});
+
+const student1OfGroup2 = new Student({
+  name: "Benjamin",
+  surname: "Brown",
+  groupId: group2._id.toString(),
+  birthDate: new Date('1988-03-01'),
+});
+
+const student2OfGroup2 = new Student({
+  name: "Emily",
+  surname: "Thompson",
+  groupId: group2._id.toString(),
+  birthDate: new Date('1993-05-08'),
+});
+
+describe('Student Service', () => {
   before(async () => {
     /**
 		 * The mongoSetup promise is resolved when the database is ready to be used.
@@ -43,7 +60,10 @@ describe('Application Service', () => {
     await mongoSetup;
 
     await group1.save();
+    await group2.save();
     await student1.save();
+    await student1OfGroup2.save();
+    await student2OfGroup2.save();
   });
 
   afterEach(() => {
@@ -107,6 +127,18 @@ describe('Application Service', () => {
           { _id: student1._id },
           student1
         );
+        done();
+      })
+      .catch(error => done(error));
+  });
+
+  it('listStudentsByGroupId should provide a list of students by groupId', (done) => {
+    const savedStudents = [student1OfGroup2, student2OfGroup2];
+    studentService.listStudentsByGroupId(group2._id.toString())
+      .then((students) => {
+        expect(students.length).to.equal(2);
+        expect(students.map(std => std._id.toString())).to
+          .eql(savedStudents.map(std => std._id.toString()));
         done();
       })
       .catch(error => done(error));
