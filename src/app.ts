@@ -26,7 +26,7 @@ export default async () => {
   // to disable caching of requests returning 304 instead of 200
   app.disable('etag');
 
-  app.use(express.json());
+  app.use(express.json({ limit: '1mb' }));
 
   app.use((req, _, next) => {
     const dateReviver = (_: string, value: any) => {

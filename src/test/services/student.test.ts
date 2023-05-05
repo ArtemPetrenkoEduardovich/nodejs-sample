@@ -5,8 +5,8 @@ import mongoSetup from '../mongoSetup';
 import Student from 'src/model/student';
 import Group from 'src/model/group';
 import { StudentSaveDto } from 'src/dto/student/studentSaveDto';
-import * as studentService from 'src/services/student';
 import { StudentQueryDto } from 'src/dto/student/studentQueryDto';
+import * as studentService from 'src/services/student';
 
 const { expect } = chai;
 
