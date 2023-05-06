@@ -11,8 +11,8 @@ export interface IStudent extends Document {
 	surname: string;
 	groupId: string;
 	birthDate: Date;
-	phoneNumbers: string[]
-	address: IAddress
+	phoneNumbers?: string[]
+	address?: IAddress
 }
 
 const addressSchema = new Schema({

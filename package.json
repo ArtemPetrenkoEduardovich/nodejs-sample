@@ -8,8 +8,13 @@
   "scripts": {
     "start": "tsc && tsc-alias && node dist/index.js",
     "test": "tsc && mocha --timeout 30000 --exit src/test/**/*.test.ts --require ts-node/register -r tsconfig-paths/register",
+    "coverage": "nyc mocha --timeout 30000 --exit src/test/**/*.test.ts --require ts-node/register -r tsconfig-paths/register",
     "build": "tsc --project tsconfig.build.json",
     "lint": "eslint . --ext .ts"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 82
   },
   "dependencies": {
     "chai-http": "4.3.0",
@@ -33,6 +38,7 @@
     "http-status": "1.6.2",
     "mocha": "10.2.0",
     "mongodb-memory-server": "8.12.2",
+    "nyc": "15.1.0",
     "sinon": "15.0.4",
     "ts-node": "10.9.1",
     "tsc-alias": "1.8.5",
