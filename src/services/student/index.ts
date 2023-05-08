@@ -23,7 +23,7 @@ export const updateStudent = async (
   studentDto: StudentSaveDto,
 ) => {
   await validateStudent(studentDto);
-  await Student.findOneAndUpdate(
+  Student.findOneAndUpdate(
     {
       _id: id,
     },

@@ -161,7 +161,7 @@ describe('Student Service', () => {
     studentService.search(query)
       .then((students) => {
         expect(students.length).to.equal(1);
-        expect(students[0]._id).to.eql(studentForSearch._id)
+        expect(students[0]._id).to.eql(studentForSearch._id);
         done();
       })
       .catch(error => done(error));
@@ -174,7 +174,7 @@ describe('Student Service', () => {
     studentService.search(query)
       .then((students) => {
         expect(students.length).to.equal(1);
-        expect(students[0]._id).to.eql(studentForSearch._id)
+        expect(students[0]._id).to.eql(studentForSearch._id);
         done();
       })
       .catch(error => done(error));
@@ -187,7 +187,7 @@ describe('Student Service', () => {
     studentService.search(query)
       .then((students) => {
         expect(students.length).to.equal(1);
-        expect(students[0]._id).to.eql(studentForSearch._id)
+        expect(students[0]._id).to.eql(studentForSearch._id);
         done();
       })
       .catch(error => done(error));
