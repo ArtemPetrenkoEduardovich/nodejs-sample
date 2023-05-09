@@ -23,6 +23,12 @@ npm run start
 If everything is fine, you will see:
 "Example app listening on port localhost:8888"
 
+# How to develop
+
+```
+npm run devel
+```
+
 # How to build
 
 ```
