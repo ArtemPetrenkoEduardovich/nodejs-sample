@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    image: mongo:5.0.14
+    ports:
+      - '27018:27017'
+    volumes:
+      - ./docker/data/mongo/db:/data/db
+  consul:
+    image: consul:1.15.2
+    ports:
+      - '8501:8500'
+    volumes:
+      - ./docker/data/consul/data:/consul/data
+      - ./docker/data/consul/config:/consul/config
+    command: ["consul", "agent", "-server", "-ui", "-bind", "0.0.0.0", "-client", "0.0.0.0", "-data-dir", "/consul/data", "-config-dir", "/consul/config", "-bootstrap", "-datacenter", "docker"]
+
+#  docker system prune -a
+#  docker-compose up

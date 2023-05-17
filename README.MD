@@ -9,7 +9,7 @@ Add to consul these key-values:
 
 `config/nodejs-sample/port` : `8888`
 
-`config/nodejs-sample/mongo.address` : `mongodb://127.0.0.1:27017`
+`config/nodejs-sample/mongo.address` : `mongodb://127.0.0.1:27018`
 
 # Setup
 Run `npm install` in the terminal

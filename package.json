@@ -1,8 +1,8 @@
 {
   "name": "nodejs-sample",
   "version": "1.0.0",
-  "description": "",
-  "author": "",
+  "description": "This is an example node js project using typescript, consul, express, mongoose, mocha",
+  "author": "Artem Petrenko",
   "license": "ISC",
   "main": "index.js",
   "scripts": {

@@ -1,10 +1,8 @@
 const config = {
-  port: 8888,
-  address: 'localhost',
   consul: {
     server: {
-      host: '127.0.0.1',
-      port: '8500',
+      host: 'localhost',
+      port: '8501',
     },
     // how this service is going to provide info to consul
     service: {
