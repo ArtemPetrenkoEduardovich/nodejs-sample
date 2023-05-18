@@ -23,12 +23,14 @@ export const updateStudent = async (
   studentDto: StudentSaveDto,
 ) => {
   await validateStudent(studentDto);
-  Student.findOneAndUpdate(
+  await Student.findOneAndUpdate(
     {
       _id: id,
     },
     {
-      ...studentDto,
+      $set: {
+        ...studentDto,
+      },
     }
   );
 };
@@ -73,14 +75,16 @@ const toInfoDto = (students: IStudent[]): StudentInfoDto[] => {
 
 export const validateStudent = async (studentDto: StudentSaveDto) => {
   const id = studentDto.groupId;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    throw new Error(`Group with id ${id} doesn't exist`);
-  }
-  const isGroupExists = await Group.exists({
-    _id: id,
-  });
-  if (!isGroupExists) {
-    throw new Error(`Group with id ${id} doesn't exist`);
+  if (!!id) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new Error(`Group with id ${id} doesn't exist`);
+    }
+    const isGroupExists = await Group.exists({
+      _id: id,
+    });
+    if (!isGroupExists) {
+      throw new Error(`Group with id ${id} doesn't exist`);
+    }
   }
   if (!!studentDto.birthDate
 		&& studentDto.birthDate.getTime() >= new Date().getTime()) {

@@ -21,3 +21,5 @@ coverage
 *.tgz
 
 .npmrc_docker
+
+package-lock.json

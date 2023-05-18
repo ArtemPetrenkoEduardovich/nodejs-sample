@@ -19,7 +19,7 @@ const group1 = new Group({
 });
 
 const student1 = new Student({
-  _id: new ObjectId().toString(),
+  _id: new ObjectId(),
   name: "John",
   surname: "Doe",
   groupId: group1._id.toString(),
@@ -132,11 +132,17 @@ describe('Student Service', () => {
       .then(() => {
         sandbox.assert.calledOnce(validateStudentStub);
         sandbox.assert.calledOnce(findOneAndUpdateStub);
-        validateStudentStub.calledWith(student1);
-        findOneAndUpdateStub.calledWith(
-          { _id: student1._id },
-          student1
-        );
+        const validationArgs = validateStudentStub.getCall(0).args;
+        expect(validationArgs[0]).to.eql(student1);
+        const findArgs = findOneAndUpdateStub.getCall(0).args;
+        expect(findArgs[0]).to.eql({
+          _id: student1._id,
+        });
+        expect(findArgs[1]).to.eql({
+          $set: {
+            ...student1,
+          },
+        });
         done();
       })
       .catch(error => done(error));
