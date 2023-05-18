@@ -3,6 +3,10 @@ This is an example node js project using typescript, consul, express, mongoose, 
 
 # Configuration
 
+Run `docker-compose up` in order to create the container with consul and mongoDB
+
+Open consul ui (by default `localhost:8501`)
+
 Add to consul these key-values:
 
 `config/nodejs-sample/address` : `localhost`
@@ -16,12 +20,17 @@ Run `npm install` in the terminal
 
 # How to run
 
+When your consul and mongoDB containers are running
 ```
 npm run start
 ```
 
 If everything is fine, you will see:
 "Example app listening on port localhost:8888"
+
+You can check the service by calling
+GET: `http://localhost:8888/ping`
+response will be `PONG`
 
 # How to develop
 

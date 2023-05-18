@@ -16,7 +16,6 @@ log/newrelic_agent.log
 
 # Tests
 .nyc_output
-coverage
 
 *.tgz
 

@@ -14,6 +14,3 @@ services:
       - ./docker/data/consul/data:/consul/data
       - ./docker/data/consul/config:/consul/config
     command: ["consul", "agent", "-server", "-ui", "-bind", "0.0.0.0", "-client", "0.0.0.0", "-data-dir", "/consul/data", "-config-dir", "/consul/config", "-bootstrap", "-datacenter", "docker"]
-
-#  docker system prune -a
-#  docker-compose up

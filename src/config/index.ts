@@ -4,16 +4,8 @@ const config = {
       host: 'localhost',
       port: '8501',
     },
-    // how this service is going to provide info to consul
     service: {
       name: 'nodejs-sample',
-      id: 'nodejs-sample',
-      port: 8888,
-      address: 'localhost',
-      check: {
-        http: 'http://localhost:8888/health',
-        interval: '5s',
-      },
     },
   },
   log4js: {
