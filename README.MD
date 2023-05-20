@@ -3,17 +3,22 @@ This is an example node js project using typescript, consul, express, mongoose, 
 
 # Configuration
 
-Run `docker-compose up` in order to create the container with consul and mongoDB
+Create a network for consul, mongoDB and nodejs-sample services:
+`docker network create app-network`
 
+Run `docker-compose up` in order to create containers for consul, mongoDB and nodejs-sample
+// todo try to add kv automatically
+The first time nodejs-sample will crash, you need to add k/v to consul:
 Open consul ui (by default `localhost:8501`)
-
 Add to consul these key-values:
 
-`config/nodejs-sample/address` : `localhost`
+`config/nodejs-sample/address` : `0.0.0.0`
 
 `config/nodejs-sample/port` : `8888`
 
-`config/nodejs-sample/mongo.address` : `mongodb://127.0.0.1:27018`
+`config/nodejs-sample/mongo.address` : `mongodb://db:27017`
+
+run nodejs-sample again
 
 # Setup
 Run `npm install` in the terminal

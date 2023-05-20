@@ -1,8 +1,8 @@
 const config = {
   consul: {
     server: {
-      host: 'localhost',
-      port: '8501',
+      host: 'consul',
+      port: '8500',
     },
     service: {
       name: 'nodejs-sample',
