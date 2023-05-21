@@ -9,6 +9,8 @@ services:
       - consul
     networks:
       - app-network
+    environment:
+      - NODE_ENV=prod
   db:
     image: mongo:5.0.14
     ports:
@@ -24,9 +26,18 @@ services:
     volumes:
       - ./docker/data/consul/data:/consul/data
       - ./docker/data/consul/config:/consul/config
+      - ./resources/consul:/resources/consul
     networks:
       - app-network
-    command: ["consul", "agent", "-server", "-ui", "-bind", "0.0.0.0", "-client", "0.0.0.0", "-data-dir", "/consul/data", "-config-dir", "/consul/config", "-bootstrap", "-datacenter", "docker"]
+    command:
+      - sh
+      - -c
+      - |
+        consul agent -server -ui -bind 0.0.0.0 -client 0.0.0.0 -data-dir /consul/data -config-dir /consul/config -bootstrap -datacenter docker &
+        consul_pid=$!
+        sleep 5
+        consul kv import -http-addr=http://0.0.0.0:8500 @/resources/consul/consul-config-kv.json
+        wait $consul_pid
 
 networks:
   app-network:

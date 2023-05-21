@@ -5,7 +5,11 @@ import log4js, { Configuration } from 'log4js';
 import mongoose, { ConnectOptions } from 'mongoose';
 import Consul, { ConsulOptions } from 'consul';
 
-const consulServer = new Consul(config.consul.server as ConsulOptions);
+type envTypes = 'dev' | 'prod';
+
+const env = (process.env.NODE_ENV || 'dev') as envTypes;
+
+const consulServer = new Consul(config.consul.server[env] as ConsulOptions);
 
 const prefix = `config/${config.consul.service.name}`;
 
@@ -45,13 +49,13 @@ export default async () => {
 
   app.use('/', controllers);
 
-  const port = await getConsulValue('port');
-  const address = await getConsulValue('address');
+  const port = await getConsulValue(`${env}/port`);
+  const address = await getConsulValue(`${env}/address`);
   app.listen(port, address, () => {
     log4js.getLogger().info(`Example app listening on port ${address}:${port}`);
   });
 
-  const mongoAddress = await getConsulValue('mongo.address');
+  const mongoAddress = await getConsulValue(`${env}/mongo.address`);
   await mongoose.connect(mongoAddress, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

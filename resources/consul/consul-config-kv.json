@@ -1,0 +1,52 @@
+[
+	{
+		"key": "config/",
+		"flags": 0,
+		"value": ""
+	},
+	{
+		"key": "config/nodejs-sample/",
+		"flags": 0,
+		"value": ""
+	},
+	{
+		"key": "config/nodejs-sample/dev/",
+		"flags": 0,
+		"value": ""
+	},
+	{
+		"key": "config/nodejs-sample/dev/address",
+		"flags": 0,
+		"value": "bG9jYWxob3N0"
+	},
+	{
+		"key": "config/nodejs-sample/dev/mongo.address",
+		"flags": 0,
+		"value": "bW9uZ29kYjovLzEyNy4wLjAuMToyNzAxOA=="
+	},
+	{
+		"key": "config/nodejs-sample/dev/port",
+		"flags": 0,
+		"value": "ODg4OA=="
+	},
+	{
+		"key": "config/nodejs-sample/prod/",
+		"flags": 0,
+		"value": ""
+	},
+	{
+		"key": "config/nodejs-sample/prod/address",
+		"flags": 0,
+		"value": "MC4wLjAuMA=="
+	},
+	{
+		"key": "config/nodejs-sample/prod/mongo.address",
+		"flags": 0,
+		"value": "bW9uZ29kYjovL2RiOjI3MDE3"
+	},
+	{
+		"key": "config/nodejs-sample/prod/port",
+		"flags": 0,
+		"value": "ODg4OA=="
+	}
+]
