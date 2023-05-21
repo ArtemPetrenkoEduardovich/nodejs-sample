@@ -1,5 +1,5 @@
 import express from 'express';
-import ping from './ping';
+import ping from 'src/controllers/ping';
 import groups from './groups';
 import students from './students';
 

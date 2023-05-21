@@ -1,5 +1,5 @@
 import express from 'express';
-import controllers from './controllers';
+import routers from './routers';
 import config from './config';
 import log4js, { Configuration } from 'log4js';
 import mongoose, { ConnectOptions } from 'mongoose';
@@ -47,7 +47,7 @@ export default async () => {
     next();
   });
 
-  app.use('/', controllers);
+  app.use('/', routers);
 
   const port = await getConsulValue(`${env}/port`);
   const address = await getConsulValue(`${env}/address`);
