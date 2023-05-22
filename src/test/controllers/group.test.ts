@@ -3,7 +3,7 @@ import express from 'express';
 import sinon from 'sinon';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import controllers from 'src/controllers/groups';
+import routers from 'src/routers/groups';
 import Group from 'src/model/group';
 import { ObjectId } from 'mongodb';
 
@@ -18,7 +18,7 @@ const app = express();
 
 app.disable('etag');
 app.use(bodyParser.json({ limit: '1mb' }));
-app.use('/', controllers);
+app.use('/', routers);
 
 describe('Group controller', () => {
 
