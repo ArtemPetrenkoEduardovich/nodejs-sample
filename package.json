@@ -6,9 +6,9 @@
   "license": "ISC",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && ts-node -r tsconfig-paths/register dist/index.js",
+    "start": "npm run build && node ./dist/index.js",
     "devel": "npx nodemon -r tsconfig-paths/register --exec ts-node ./src/index.ts",
-    "build": "tsc --project tsconfig.build.json",
+    "build": "npx tsc",
     "test": "tsc && mocha --timeout 30000 --exit src/test/**/*.test.ts --require ts-node/register -r tsconfig-paths/register",
     "coverage": "nyc mocha --timeout 30000 --exit src/test/**/*.test.ts --require ts-node/register -r tsconfig-paths/register",
     "lint": "eslint . --ext .ts"
@@ -17,11 +17,16 @@
     "check-coverage": true,
     "lines": 82
   },
+  "_moduleAliases": {
+    "src": "dist"
+  },
   "dependencies": {
     "chai-http": "4.3.0",
     "consul": "1.2.0",
     "express": "4.18.2",
+    "http-status": "1.6.2",
     "log4js": "6.9.1",
+    "module-alias": "2.2.3",
     "mongoose": "7.0.4"
   },
   "devDependencies": {
@@ -36,7 +41,6 @@
     "chai": "4.3.7",
     "eslint": "8.39.0",
     "eslint-config-prettier": "8.8.0",
-    "http-status": "1.6.2",
     "mocha": "10.2.0",
     "mongodb-memory-server": "8.12.2",
     "nodemon": "2.0.22",
