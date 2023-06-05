@@ -10,7 +10,7 @@
     "devel": "npx nodemon --exec ts-node ./src/index.ts",
     "build": "npx tsc",
     "test": "mocha --timeout 30000 --exit src/test/**/*.test.ts --require ts-node/register -r tsconfig-paths/register",
-    "coverage": "nyc mocha --timeout 30000 --exit src/test/**/*.test.ts --require ts-node/register -r tsconfig-paths/register",
+    "coverage": "nyc npm run test",
     "lint": "eslint . --ext .ts"
   },
   "nyc": {
