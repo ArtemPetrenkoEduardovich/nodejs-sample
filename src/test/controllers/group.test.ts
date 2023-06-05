@@ -16,7 +16,6 @@ const sandbox = sinon.createSandbox();
 
 const app = express();
 
-app.disable('etag');
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use('/', routers);
 
@@ -75,9 +74,10 @@ describe('Group controller', () => {
 
     chai.request(app)
       .post('')
+      .send({ body: { ...group } })
       .end((_, res) => {
         res.should.have.status(201);
-        expect(res.body.id).to.deep.equal(groupIdAfterSave.toString());
+        expect(res.body.id).to.equal(groupIdAfterSave.toString());
 
         done();
       });
