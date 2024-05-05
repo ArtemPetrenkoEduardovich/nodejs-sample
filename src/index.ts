@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-extra-boolean-cast
-if (!Boolean(process.env.DEVEL)) {
+if (String(process.env.NODE_ENV).trim() !== 'dev') {
   require('module-alias/register');
 }
 import app from './app';

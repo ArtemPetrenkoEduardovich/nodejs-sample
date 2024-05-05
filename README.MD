@@ -46,9 +46,9 @@ run nodejs-sample again
 # Setup
 Run `npm install` in the terminal
 
-# How to run
+# How to run for the prod
 
-When your consul and mongoDB containers are running
+When consul and mongoDB containers are running
 ```
 npm run start
 ```

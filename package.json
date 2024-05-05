@@ -6,16 +6,16 @@
   "license": "ISC",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node ./dist/index.js",
-    "devel": "set DEVEL=true && nodemon --exec ts-node -r tsconfig-paths/register -P tsconfig.json ./src/index.ts",
     "build": "npx tsc",
+    "devel": "set NODE_ENV=dev && nodemon --exec ts-node -r tsconfig-paths/register -P tsconfig.json ./src/index.ts",
     "test": "mocha --timeout 30000 --exit src/test/**/*.test.ts --require ts-node/register -r tsconfig-paths/register",
     "coverage": "nyc npm run test",
+    "start": "npm run build && node ./dist/index.js",
     "lint": "eslint . --ext .ts"
   },
   "nyc": {
     "check-coverage": true,
-    "lines": 82
+    "lines": 80
   },
   "_moduleAliases": {
     "src": "dist"

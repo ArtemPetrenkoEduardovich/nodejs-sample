@@ -5,9 +5,12 @@ import log4js, { Configuration } from 'log4js';
 import mongoose, { ConnectOptions } from 'mongoose';
 import Consul, { ConsulOptions } from 'consul';
 
-type envTypes = 'dev' | 'prod';
+type EnvType = 'dev' | 'prod';
 
-const env = (process.env.NODE_ENV || 'dev') as envTypes;
+let env: EnvType = 'prod';
+if (String(process.env.NODE_ENV).trim() === 'dev') {
+  env = 'dev';
+}
 
 const consulServer = new Consul(config.consul.server[env] as ConsulOptions);
 
