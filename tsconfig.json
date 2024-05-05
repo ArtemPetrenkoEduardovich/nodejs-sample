@@ -14,7 +14,6 @@
     "preserveConstEnums": true,
     "removeComments": false,
     "resolveJsonModule": true,
-    "useUnknownInCatchVariables": false,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "skipLibCheck": true,
@@ -22,8 +21,7 @@
   },
   "exclude": [
     "node_modules",
-    "dist",
-    "src/test"
+    "dist"
   ],
   "include": [
     "src/**/*.ts"

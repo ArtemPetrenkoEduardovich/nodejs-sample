@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && node ./dist/index.js",
-    "devel": "npx nodemon --exec ts-node ./src/index.ts",
+    "devel": "set DEVEL=true && nodemon --exec ts-node -r tsconfig-paths/register -P tsconfig.json ./src/index.ts",
     "build": "npx tsc",
     "test": "mocha --timeout 30000 --exit src/test/**/*.test.ts --require ts-node/register -r tsconfig-paths/register",
     "coverage": "nyc npm run test",
@@ -48,6 +48,6 @@
     "sinon": "15.0.4",
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.2.0",
-    "typescript": "4.4.4"
+    "typescript": "5.4.5"
   }
 }

@@ -1,7 +1,7 @@
 import express from 'express';
 import {
-	listGroups,
-	saveGroup,
+  listGroups,
+  saveGroup,
 } from 'src/controllers/groups';
 
 const router = express.Router();

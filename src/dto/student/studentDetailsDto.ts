@@ -6,7 +6,7 @@ export interface StudentDetailsDto {
 	groupId: string;
 	birthDate: Date;
 	phoneNumbers: string[];
-	address: Address;
+	address?: Address;
 	createdAt: Date;
 	updatedAt: Date;
 }

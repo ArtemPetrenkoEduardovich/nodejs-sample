@@ -14,14 +14,14 @@ const sandbox = sinon.createSandbox();
 
 const group1 = new Group({
   _id: new ObjectId(),
-  name: "Group 1",
+  name: 'Group 1',
   startYear: 1,
 });
 
 const student1 = new Student({
   _id: new ObjectId(),
-  name: "John",
-  surname: "Doe",
+  name: 'John',
+  surname: 'Doe',
   groupId: group1._id.toString(),
   birthDate: new Date('1999-06-06'),
   phoneNumbers: ['+380667890011'],
@@ -34,28 +34,28 @@ const student1 = new Student({
 
 const group2 = new Group({
   _id: new ObjectId(),
-  name: "Group 2",
+  name: 'Group 2',
   startYear: 2,
 });
 
 const student1OfGroup2 = new Student({
-  name: "Benjamin",
-  surname: "Brown",
+  name: 'Benjamin',
+  surname: 'Brown',
   groupId: group2._id.toString(),
   birthDate: new Date('1988-03-01'),
 });
 
 const student2OfGroup2 = new Student({
-  name: "Emily",
-  surname: "Thompson",
+  name: 'Emily',
+  surname: 'Thompson',
   groupId: group2._id.toString(),
   birthDate: new Date('1993-05-08'),
 });
 
 const studentForSearch = new Student({
   _id: new ObjectId().toString(),
-  name: "Test Name 1",
-  surname: "Test Surname 1",
+  name: 'Test Name 1',
+  surname: 'Test Surname 1',
   groupId: new ObjectId().toString(),
   birthDate: new Date('1991-01-01'),
 });
@@ -99,7 +99,7 @@ describe('Student Service', () => {
 
         done();
       })
-      .catch(error => done(error));
+      .catch((error: Error) => done(error));
   });
 
   it('getStudent should return null if student not found', (done) => {
@@ -109,20 +109,19 @@ describe('Student Service', () => {
         expect(student).to.be.null;
         done();
       })
-      .catch(error => done(error));
+      .catch((error: Error) => done(error));
   });
 
   it('getStudent should return student details if found', (done) => {
     studentService.getStudent(student1._id)
       .then((studentDetails) => {
-        expect(studentDetails).to.have.property('_id').that.eql(student1._id);
         expect(studentDetails).to.have.property('name', student1.name);
         expect(studentDetails).to.have.property('surname', student1.surname);
         expect(studentDetails).to.have.property('groupId', student1.groupId);
         expect(studentDetails).to.have.property('birthDate').that.eql(student1.birthDate);
         done();
       })
-      .catch(error => done(error));
+      .catch((error: Error) => done(error));
   });
 
   it('updateStudent should update a student', (done) => {
@@ -145,7 +144,7 @@ describe('Student Service', () => {
         });
         done();
       })
-      .catch(error => done(error));
+      .catch((error: Error) => done(error));
   });
 
   it('listStudentsByGroupId should provide a list of students by groupId', (done) => {
@@ -157,45 +156,42 @@ describe('Student Service', () => {
           .eql(savedStudents.map(std => std._id.toString()));
         done();
       })
-      .catch(error => done(error));
+      .catch((error: Error) => done(error));
   });
 
   it('search should find a student by name', (done) => {
-    const query = new StudentQueryDto({
-      name: studentForSearch.name,
-    });
+    const query: StudentQueryDto = new StudentQueryDto();
+    query.name = studentForSearch.name;
     studentService.search(query)
       .then((students) => {
         expect(students.length).to.equal(1);
         expect(students[0]._id).to.eql(studentForSearch._id);
         done();
       })
-      .catch(error => done(error));
+      .catch((error: Error) => done(error));
   });
 
   it('search should find a student by surname', (done) => {
-    const query = new StudentQueryDto({
-      surname: studentForSearch.surname,
-    });
+    const query: StudentQueryDto = new StudentQueryDto();
+    query.surname = studentForSearch.surname;
     studentService.search(query)
       .then((students) => {
         expect(students.length).to.equal(1);
         expect(students[0]._id).to.eql(studentForSearch._id);
         done();
       })
-      .catch(error => done(error));
+      .catch((error: Error) => done(error));
   });
 
   it('search should find a student by groupId', (done) => {
-    const query = new StudentQueryDto({
-      groupId: studentForSearch.groupId,
-    });
+    const query: StudentQueryDto = new StudentQueryDto();
+    query.groupId = studentForSearch.groupId;
     studentService.search(query)
       .then((students) => {
         expect(students.length).to.equal(1);
         expect(students[0]._id).to.eql(studentForSearch._id);
         done();
       })
-      .catch(error => done(error));
+      .catch((error: Error) => done(error));
   });
 });

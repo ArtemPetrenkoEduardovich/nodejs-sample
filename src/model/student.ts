@@ -13,6 +13,10 @@ export interface IStudent extends Document {
 	birthDate: Date;
 	phoneNumbers?: string[]
 	address?: IAddress
+
+  /** will be added by mongo */
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const addressSchema = new Schema({

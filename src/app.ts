@@ -14,7 +14,7 @@ const consulServer = new Consul(config.consul.server[env] as ConsulOptions);
 const prefix = `config/${config.consul.service.name}`;
 
 type ConsulResult = {
-	Value: any,
+	Value: string | number,
 };
 
 const getConsulValue = async (key: string) => {
@@ -33,9 +33,9 @@ export default async () => {
   app.use(express.json({ limit: '1mb' }));
 
   app.use((req, _, next) => {
-    const dateReviver = (_: string, value: any) => {
+    const dateReviver = (_: string, value: unknown) => {
       if (value && typeof value === 'string') {
-        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        const dateRegex = /^\d{2}-\d{2}-\d{4}$/;
         if (dateRegex.test(value)) {
           return new Date(value);
         }
@@ -49,13 +49,13 @@ export default async () => {
 
   app.use('/', routers);
 
-  const port = await getConsulValue(`${env}/port`);
-  const address = await getConsulValue(`${env}/address`);
+  const port = await getConsulValue(`${env}/port`) as number;
+  const address = await getConsulValue(`${env}/address`) as string;
   app.listen(port, address, () => {
     log4js.getLogger().info(`Example app listening on port ${address}:${port}`);
   });
 
-  const mongoAddress = await getConsulValue(`${env}/mongo.address`);
+  const mongoAddress = await getConsulValue(`${env}/mongo.address`) as string;
   await mongoose.connect(mongoAddress, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

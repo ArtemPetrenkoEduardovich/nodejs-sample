@@ -1,10 +1,10 @@
 import express from 'express';
 import {
-	getStudent,
-	saveStudent,
-	updateStudent,
-	listStudentsByGroupId,
-	search,
+  getStudent,
+  saveStudent,
+  updateStudent,
+  listStudentsByGroupId,
+  search,
 } from 'src/controllers/students';
 
 const router = express.Router();

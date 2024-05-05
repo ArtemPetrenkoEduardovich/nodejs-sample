@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
+import Group from 'src/model/group';
+import Student, { IStudent } from 'src/model/student';
 import { StudentSaveDto } from 'src/dto/student/studentSaveDto';
 import { StudentDetailsDto } from 'src/dto/student/studentDetailsDto';
 import { StudentInfoDto } from 'src/dto/student/studentInfoDto';
 import { StudentQueryDto } from 'src/dto/student/studentQueryDto';
-import Student, { IStudent } from 'src/model/student';
-import Group from 'src/model/group';
 
 export const createStudent = async (
   studentDto: StudentSaveDto
@@ -14,14 +14,30 @@ export const createStudent = async (
   return student._id;
 };
 
-export const getStudent = (id: string): Promise<StudentDetailsDto | null> => {
-  return Student.findById(id);
+export const getStudent = async (
+  id: string
+): Promise<StudentDetailsDto | null> => {
+  const student = await Student.findById(id);
+  return student ? toDetailsDto(student) : null;
+};
+
+const toDetailsDto = (student: IStudent): StudentDetailsDto => {
+  return ({
+    name: student.name,
+    surname: student.surname,
+    groupId: student.groupId,
+    birthDate: student.birthDate,
+    phoneNumbers: [...(student.phoneNumbers || [])],
+    address: student.address,
+    createdAt: student.createdAt,
+    updatedAt: student.updatedAt,
+  });
 };
 
 export const updateStudent = async (
   id: string,
   studentDto: StudentSaveDto,
-) => {
+): Promise<void> => {
   await validateStudent(studentDto);
   await Student.findOneAndUpdate(
     {
@@ -42,7 +58,7 @@ export const listStudentsByGroupId = async (
     groupId,
   });
 
-  return toInfoDto(students);
+  return students.map(student => toInfoDto(student));
 };
 
 export const search = async (
@@ -62,20 +78,20 @@ export const search = async (
     .skip(query.skip)
     .limit(query.limit);
 
-  return toInfoDto(students);
+  return students.map(student => toInfoDto(student));
 };
 
-const toInfoDto = (students: IStudent[]): StudentInfoDto[] => {
-  return students.map(student => ({
+const toInfoDto = (student: IStudent): StudentInfoDto => {
+  return ({
     _id: student._id,
     fullName: `${student.name} ${student.surname}`,
     groupId: student.groupId,
-  }));
+  });
 };
 
 export const validateStudent = async (studentDto: StudentSaveDto) => {
   const id = studentDto.groupId;
-  if (!!id) {
+  if (id) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new Error(`Group with id ${id} doesn't exist`);
     }
